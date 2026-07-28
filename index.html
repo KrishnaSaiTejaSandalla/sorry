@@ -27,14 +27,24 @@
     <h2>I knew it😍!</h2>
   </div>
 
-  <!-- Hug Loader -->
-  <div class="hug-loader">
-    <div class="hug-scene">
-      <span class="hug-fig hug-chaser">🏃‍➡️</span>
-      <span class="hug-fig hug-chasee">🧍‍♀️</span>
-      <span class="hug-pop">🤗</span>
-    </div>
-    <p class="hug-text">wait for it… 💕</p>
+  <!-- Message Loading Component -->
+  <div class="message-loading">
+    <svg width="80" height="80" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="message-loader">
+      <circle cx="4" cy="12" r="2" fill="currentColor">
+        <animate begin="0s" attributeName="cy" calcMode="spline" dur="0.6s" values="12;6;12"
+          keySplines=".33,.66,.66,1;.33,0;.66,.33" repeatCount="indefinite" />
+      </circle>
+
+      <circle cx="12" cy="12" r="2" fill="currentColor">
+        <animate begin="0.1s" attributeName="cy" calcMode="spline" dur="0.6s" values="12;6;12"
+          keySplines=".33,.66,.66,1;.33,0;.66,.33" repeatCount="indefinite" />
+      </circle>
+
+      <circle cx="20" cy="12" r="2" fill="currentColor">
+        <animate begin="0.2s" attributeName="cy" calcMode="spline" dur="0.6s" values="12;6;12"
+          keySplines=".33,.66,.66,1;.33,0;.66,.33" repeatCount="indefinite" />
+      </circle>
+    </svg>
   </div>
 
   <script src="script.js"></script>

@@ -1,0 +1,7 @@
+.message-loading {
+    display: block;
+}
+
+.message-loader {
+    color: currentColor;
+}
