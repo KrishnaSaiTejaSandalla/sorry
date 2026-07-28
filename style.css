@@ -1,0 +1,218 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffe6e9;
+  font-family: "Quicksand", sans-serif;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-100%, -50%);
+  transition: 0.2s;
+}
+
+.question-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transition: 0.2s;
+}
+.local-gif {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 3rem auto;
+  pointer-events: none;
+}
+
+.question {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.btn {
+  position: absolute;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #ff6b81;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(255, 107, 129, 0.5);
+}
+.btn:hover {
+  background-color: #ffa4b1;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(255, 107, 129, 0.7);
+  text-shadow: 1px 1px 5px rgba(255, 182, 193, 0.8);
+}
+
+.yes-btn {
+  right: 54%;
+}
+.no-btn {
+  left: 54%;
+}
+
+.result-container {
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-100%, -50%);
+  transition: 0.2s;
+}
+.gif-result {
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+.result-container h2 {
+  font-size: 3.2rem;
+  text-align: center;
+}
+
+/* ========================================
+   HUG LOADER
+   - Chaser runs from left=-70px to left=178px  (248px, faster)
+   - Chasee runs from left=-20px to left=178px  (198px, slower)
+   - They meet at 70% of the 3s loop → 2.1s
+   - 🤗 pops up, both fade, teleport back, fade in
+======================================== */
+.hug-loader {
+  display: none;          /* JS sets to flex when active */
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 230, 233, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.hug-scene {
+  position: relative;
+  width: 280px;
+  height: 80px;
+}
+
+.hug-fig {
+  position: absolute;
+  bottom: 0;
+  font-size: 3rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.hug-chaser {
+  animation: hug-chaser-run 3s linear infinite;
+}
+
+.hug-chasee {
+  animation: hug-chasee-run 3s linear infinite;
+}
+
+.hug-pop {
+  position: absolute;
+  font-size: 2.5rem;
+  bottom: 52px;
+  left: 158px;
+  opacity: 0;
+  user-select: none;
+  animation: hug-pop-anim 3s ease-in-out infinite;
+}
+
+.hug-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #d63a5e;
+  letter-spacing: 0.06em;
+  animation: hug-text-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes hug-text-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Chaser: -70px → 178px (248px in 70% of loop) ── */
+@keyframes hug-chaser-run {
+  0%   { left: -70px; transform: translateY(0);    opacity: 1; }
+  6%   {              transform: translateY(-13px);             }
+  12%  { left: -28px; transform: translateY(0);                }
+  18%  {              transform: translateY(-13px);             }
+  24%  { left:  15px; transform: translateY(0);                }
+  30%  {              transform: translateY(-13px);             }
+  36%  { left:  58px; transform: translateY(0);                }
+  42%  {              transform: translateY(-13px);             }
+  48%  { left: 101px; transform: translateY(0);                }
+  54%  {              transform: translateY(-13px);             }
+  60%  { left: 144px; transform: translateY(0);                }
+  66%  {              transform: translateY(-10px);             }
+  70%  { left: 178px; transform: translateY(0);    opacity: 1; }
+  /* Hug! */
+  77%  { left: 178px;                              opacity: 0; }
+  /* Teleport back while invisible */
+  78%  { left: -70px;                              opacity: 0; }
+  97%  { left: -70px;                              opacity: 0; }
+  100% { left: -70px; transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Chasee: -20px → 178px (198px in 70% of loop) ── */
+@keyframes hug-chasee-run {
+  0%   { left: -20px; transform: translateY(0);    opacity: 1; }
+  6%   {              transform: translateY(-10px);             }
+  12%  { left:  14px; transform: translateY(0);                }
+  18%  {              transform: translateY(-10px);             }
+  24%  { left:  48px; transform: translateY(0);                }
+  30%  {              transform: translateY(-10px);             }
+  36%  { left:  82px; transform: translateY(0);                }
+  42%  {              transform: translateY(-10px);             }
+  48%  { left: 116px; transform: translateY(0);                }
+  54%  {              transform: translateY(-10px);             }
+  60%  { left: 150px; transform: translateY(0);                }
+  66%  {              transform: translateY(-8px);              }
+  70%  { left: 178px; transform: translateY(0);    opacity: 1; }
+  /* Got caught! */
+  77%  { left: 178px;                              opacity: 0; }
+  /* Teleport back while invisible */
+  78%  { left: -20px;                              opacity: 0; }
+  97%  { left: -20px;                              opacity: 0; }
+  100% { left: -20px; transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Hug emoji pops up when they meet ── */
+@keyframes hug-pop-anim {
+  0%,  66% { opacity: 0; transform: scale(0.3) translateY(0);    }
+  73%      { opacity: 1; transform: scale(1.5) translateY(-20px); }
+  83%      { opacity: 1; transform: scale(1.1) translateY(-10px); }
+  93%      { opacity: 0; transform: scale(0.7) translateY(-5px);  }
+  100%     { opacity: 0; }
+}
